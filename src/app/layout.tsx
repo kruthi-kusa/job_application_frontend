@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +25,38 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
+          <header className="sticky top-0 backdrop-blur-sm bg-blue-500 dark:bg-gray-900/75 border-b border-gray-200 dark:border-gray-800 z-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex justify-between items-center h-16">
+                <a
+                  className="flex items-center gap-3 text-lg font-medium transition-colors hover:text-gray-600 dark:hover:text-gray-300"
+                  href="/"
+                >
+                  <Image
+                    src="/next.svg"
+                    alt="Logo"
+                    width={28}
+                    height={28}
+                    priority
+                    className="dark:invert"
+                  />
+                  Your Brand
+                </a>
+                <nav className="flex gap-8">
+                  <a className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-black dark:hover:text-white" href="/about">About</a>
+                  <a className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-black dark:hover:text-white" href="/products">Products</a>
+                  <a className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors hover:text-black dark:hover:text-white" href="/contact">Contact</a>
+                </nav>
+              </div>
+            </div>
+          </header>
+          
+          <main>{children}</main>
+          
+          {/* Footer component here */}
+        </div>
       </body>
     </html>
   );
